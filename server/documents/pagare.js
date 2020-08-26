@@ -1,6 +1,9 @@
 const moment = require('moment');
 
 module.exports = (data) => {
+
+    let fecha = new Date();
+
     return`
 
     <!doctype html>
@@ -55,10 +58,20 @@ module.exports = (data) => {
        </head>
        <body>
           <div class="invoice-box">
+            <div style="display: inline-block;">
+                <img width="126px" height="46px" src="https://firebasestorage.googleapis.com/v0/b/cosbiome-bcdf4.appspot.com/o/logo-nuevo-solan-natura-editado.jpg?alt=media&token=47de15a4-7def-4c7c-a113-6df37a4bc4bc" alt="dasds"/>
+            </div>
+            <div  style="display: inline-block; margin-left: 10%;">
+                <h2>Folio Ruta 01570G</h2>
+                Tipo de Movimiento: Venta
+                Fecha Movimiento: ${moment().format('L')}
+                Hora Movimiento: ${moment().format('LTS')}
+            </div>
             <div>
                 <table>
                     <thead>
                         <tr>
+                            <th> No. pedido </th>
                             <th> Producto </th>
                             <th> Cantidad </th>
                             <th> Total </th>
@@ -66,19 +79,61 @@ module.exports = (data) => {
                     </thead>
                     <tbody>
                         ${
-                            data.prodcutos.map(a => {
-                                return "<tr>" + "<td>" + a + "</td>" + "<td>" + a + "</td>" + "<td>" + a + "</td>" + "</tr>"
+                            data.prodcutos.map((a, i) => {
+                                // return "<tr>" + "<td>" + a + "</td>" + "<td>" + a + "</td>" + "<td>" + a + "</td>" + "</tr>"
+                                return`
+                                    <tr>
+                                        <td> 
+                                            ${i + 1}L 
+                                        </td>
+                                        <td> 
+                                            ${
+                                                a.data.producto.map(b => {
+                                                    return`
+                                                        <span>
+                                                            ${b.producto}-${b.cantidad}
+                                                        </span>
+                                                    `;
+                                                })
+                                            } 
+                                        </td>
+                                        <td> 
+                                            ${
+                                                a.data.producto.length > 1 ? a.data.producto.reduce((c,d) => parseInt(c.cantidad) + parseInt(d.cantidad)) : a.data.producto[0].cantidad
+                                            } 
+                                        </td>
+                                        <td> 
+                                            ${
+                                                a.data.total
+                                            } 
+                                        </td>
+                                    </tr>
+                                `;
                             })
                         }
                     </tbody>
                 </table>
             </div>
+            <div>
+                <div style="display: inline-block;">
+                    <p>
+                        ___________${data.nombreAlmacen}______________<br>
+                        ENTREGO MERCANCIA
+                    </p>
+                </div>
+                <div style="display: inline-block; margin-left: 50%;">
+                    <p >
+                        __________________________________________<br>
+                        RECIBO MERCANCIA
+                    </p>
+                </div>
+            </div>
             <div className="recuadrotexto">
                 <h1>PAGARÉ</h1>
                 <p>
                     debo y pagare incodicionalmente por este pagare a la oden de ALEJANDRO ALVARADO GOMEZ a quien ha de pagarse, en el domicilio
-                    HIDALGO 365 COLONIA SAN PEDRO TLAQUEPAQUE JALISCO, EL DIA ____________${moment().format('L')}__________, LA CANTIDAD DE
-                    __________15,178_________ (SON:________<span>***QUINCE MIL CIENTO SETENTA Y OCHO PESOS 00/100***</span>_____), VALOR
+                    HIDALGO 365 COLONIA SAN PEDRO TLAQUEPAQUE JALISCO, EL DIA ____________${moment().add(1, 'day').format('L')}__________, LA CANTIDAD DE
+                    __________${data.total}_________ (SON:________<span>***${data.textoTotal} 00/100***</span>_____), VALOR
                     RECIBIDO A MI ENTERA SATISFACCION.
                     Este pagare es mercantil y esta regido por la Ley General de Titulos y Operaciones de Crédito en su articulo 173 parte final
                     y demas articulos correlativos por no ser pagare domiciliado
@@ -96,7 +151,7 @@ module.exports = (data) => {
                 <div class="firmaRepartidor" style="display: inline-block;">
                     <p >
                         __________________________________________<br>
-                        IGNACIO NAVARRO ANGULO
+                        ${data.nombreRepartidor}
                     </p>
                 </div>
             </div>

@@ -3,6 +3,7 @@ const webpush = require('../webpush.js');
 const pdf = require('html-pdf');
 
 const psfTemplate = require('../documents/pagare.js');
+const { numeroALetras } = require('../utils/numerosAletras.js');
 const path = require('path');
 
 const router = Router();
@@ -50,7 +51,17 @@ router.post('/almacenNoti', async(req, res) => {
 });
 
 router.post('/create-pdf', (req, res) => {
-    pdf.create(psfTemplate({prodcutos: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]}), {}).toFile('result.pdf', (err) => {
+
+    let body = req.body
+
+    let textoTotal = numeroALetras(body.total, {
+        plural: "PESOS",
+        singular: "PESO",
+        centPlural: "CENTAVOS",
+        centSingular: "CENTAVO"
+    });
+
+    pdf.create(psfTemplate({prodcutos: body.pedidos, total: body.total, nombreRepartidor: body.nombreRepartidor, textoTotal: textoTotal, nombreAlmacen: body.almacenNombre }), {}).toFile('result.pdf', (err) => {
         if(err)
         {
             return res.send(Promise.reject());
