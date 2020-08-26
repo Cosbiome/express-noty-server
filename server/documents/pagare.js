@@ -117,7 +117,7 @@ module.exports = (data) => {
             <div>
                 <div style="display: inline-block;">
                     <p>
-                        ___________<u>${data.nombreAlmacen}</u>______________<br>
+                        <u>___________${data.nombreAlmacen}______________</u><br>
                         ENTREGO MERCANCIA
                     </p>
                 </div>
@@ -132,8 +132,8 @@ module.exports = (data) => {
                 <h1>PAGARÉ</h1>
                 <p>
                     debo y pagare incodicionalmente por este pagare a la oden de ALEJANDRO ALVARADO GOMEZ a quien ha de pagarse, en el domicilio
-                    HIDALGO 365 COLONIA SAN PEDRO TLAQUEPAQUE JALISCO, EL DIA ____________<u>${moment().add(1, 'day').format('L')}</u>__________, LA CANTIDAD DE
-                    __________<u>${data.total}</u>_________ (SON:________<u><span>***${data.textoTotal} 00/100***</span></u>_____), VALOR
+                    HIDALGO 365 COLONIA SAN PEDRO TLAQUEPAQUE JALISCO, EL DIA <u>____________${moment().add(1, 'day').format('L')}__________</u>, LA CANTIDAD DE
+                    <u>__________${data.total}_________</u> (SON:<u>________<span>***${data.textoTotal} 00/100***</span>_____</u>), VALOR
                     RECIBIDO A MI ENTERA SATISFACCION.
                     Este pagare es mercantil y esta regido por la Ley General de Titulos y Operaciones de Crédito en su articulo 173 parte final
                     y demas articulos correlativos por no ser pagare domiciliado
@@ -142,7 +142,7 @@ module.exports = (data) => {
                 </p>
                 <div style="display: inline-block;">
                     <p>
-                        TLAQUEPAQUE JALISCO A:_________<u>${moment().format('L')}</u>___________.<br>
+                        TLAQUEPAQUE JALISCO A:<u>_________${moment().format('L')}___________</u>.<br>
                         ISLAS BALTICAS 4425 1-22<br>
                         COL. SAUZ, GUADALAJARA, JALISCO<br>
                         C.P. TEL: 33670425<br>
@@ -150,7 +150,7 @@ module.exports = (data) => {
                 </div>
                 <div class="firmaRepartidor" style="display: inline-block;">
                     <p >
-                        __________________________________________<br>
+                    <u>__________________________________________</u><br>
                         ${data.nombreRepartidor}
                     </p>
                 </div>
