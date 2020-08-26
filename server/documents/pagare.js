@@ -123,7 +123,7 @@ module.exports = (data) => {
                 </div>
                 <div style="display: inline-block; margin-left: 50%;">
                     <p >
-                        __________________________________________<br>
+                        <u>__________________________________________<u><br>
                         RECIBO MERCANCIA
                     </p>
                 </div>
