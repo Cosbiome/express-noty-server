@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 let Schema = mongoose.Schema;
 
-let conteoSoal = new Schema({
+let conteoCosbiome = new Schema({
     numClientes: {
         type: Number
     },
