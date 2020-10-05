@@ -11,6 +11,7 @@ let pushSubscription;
 
 const PedidosCosbiome = require('../models/pedidosCosbiome.js');
 const ConteosSoal = require('../models/conteosSoal.js');
+const ConteosCosbiome = require('../models/conteosCosbiome.js');
 
 router.get('/', (req, res) => {
     res.status(200).json({ok: true, message: 'Server para web notis'});
@@ -139,6 +140,25 @@ router.put('/soalClientes', async(req, res) => {
         numClientes: parseInt(req.body.numClientes)
     });
     return res.status(200).json({ok: true, conteosSoal});
+});
+
+router.get('/conteosCosbiome', async(req, res) => {
+    let conteosCosbiome = await ConteosCosbiome.findById('5f7b2b1ff7f29e206b3fe82d');
+    return res.status(200).json({ok: true, conteosCosbiome});
+});
+
+router.put('/cosbiomePedidos', async(req, res) => {
+    let conteosCosbiome = await ConteosCosbiome.findByIdAndUpdate('5f7b2b1ff7f29e206b3fe82d', {
+        numPedidos: parseInt(req.body.numPedidos)
+    });
+    return res.status(200).json({ok: true, conteosCosbiome});
+});
+
+router.put('/cosbiomeClientes', async(req, res) => {
+    let conteosCosbiome = await ConteosCosbiome.findByIdAndUpdate('5f7b2b1ff7f29e206b3fe82d', {
+        numClientes: parseInt(req.body.numClientes)
+    });
+    return res.status(200).json({ok: true, conteosCosbiome});
 });
 
 module.exports = router;
