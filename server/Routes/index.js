@@ -158,19 +158,19 @@ router.post('/conteosCosbiome', async(req, res) => {
 });
 
 router.get('/conteosCosbiome', async(req, res) => {
-    let conteosCosbiome = await ConteosCosbiome.findById('5f7b2b1ff7f29e206b3fe82d');
+    let conteosCosbiome = await ConteosCosbiome.findById('5f7b36ed3b77d80017b00444');
     return res.status(200).json({ok: true, conteosCosbiome});
 });
 
 router.put('/cosbiomePedidos', async(req, res) => {
-    let conteosCosbiome = await ConteosCosbiome.findByIdAndUpdate('5f7b2b1ff7f29e206b3fe82d', {
+    let conteosCosbiome = await ConteosCosbiome.findByIdAndUpdate('5f7b36ed3b77d80017b00444', {
         numPedidos: parseInt(req.body.numPedidos)
     });
     return res.status(200).json({ok: true, conteosCosbiome});
 });
 
 router.put('/cosbiomeClientes', async(req, res) => {
-    let conteosCosbiome = await ConteosCosbiome.findByIdAndUpdate('5f7b2b1ff7f29e206b3fe82d', {
+    let conteosCosbiome = await ConteosCosbiome.findByIdAndUpdate('5f7b36ed3b77d80017b00444', {
         numClientes: parseInt(req.body.numClientes)
     });
     return res.status(200).json({ok: true, conteosCosbiome});
