@@ -151,7 +151,7 @@ router.post('/conteosCosbiome', async(req, res) => {
         numClientes: parseInt(body.numClientes),
     });
 
-    await conteosSoal.save();
+    await conteosCosbiome.save();
 
     return res.status(200).json({ok: true, conteosCosbiome})
 
