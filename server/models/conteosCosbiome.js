@@ -6,7 +6,7 @@ let conteoCosbiome = new Schema({
     numClientes: {
         type: Number
     },
-    numRutas: {
+    numPedidos: {
         type: Number
     }
 });
