@@ -142,6 +142,21 @@ router.put('/soalClientes', async(req, res) => {
     return res.status(200).json({ok: true, conteosSoal});
 });
 
+
+router.post('/conteosCosbiome', async(req, res) => {
+    let body = req.body;
+
+    let conteosCosbiome = new ConteosCosbiome({
+        numPedidos: parseInt(body.numPedidos),
+        numClientes: parseInt(body.numClientes),
+    });
+
+    await conteosSoal.save();
+
+    return res.status(200).json({ok: true, conteosCosbiome})
+
+});
+
 router.get('/conteosCosbiome', async(req, res) => {
     let conteosCosbiome = await ConteosCosbiome.findById('5f7b2b1ff7f29e206b3fe82d');
     return res.status(200).json({ok: true, conteosCosbiome});
