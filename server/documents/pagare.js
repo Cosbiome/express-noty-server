@@ -1,10 +1,9 @@
-const moment = require('moment');
+const moment = require("moment");
 
 module.exports = (data) => {
+  let fecha = new Date();
 
-    let fecha = new Date();
-
-    return`
+  return `
 
     <!doctype html>
     <html>
@@ -64,8 +63,8 @@ module.exports = (data) => {
             <div  style="display: inline-block; margin-left: 10%;">
                 <h2>Folio Ruta 01570G</h2>
                 Tipo de Movimiento: Venta
-                Fecha Movimiento: ${moment().format('L')}
-                Hora Movimiento: ${moment().format('LTS')}
+                Fecha Movimiento: ${moment().format("L")}
+                Hora Movimiento: ${moment().format("LTS")}
             </div>
             <div>
                 <table>
@@ -78,46 +77,48 @@ module.exports = (data) => {
                         </tr>
                     </thead>
                     <tbody>
-                        ${
-                            data.prodcutos.map((a, i) => {
-                                // return "<tr>" + "<td>" + a + "</td>" + "<td>" + a + "</td>" + "<td>" + a + "</td>" + "</tr>"
-                                return`
+                        ${data.prodcutos.map((a, i) => {
+                          // return "<tr>" + "<td>" + a + "</td>" + "<td>" + a + "</td>" + "<td>" + a + "</td>" + "</tr>"
+                          return `
                                     <tr>
                                         <td> 
-                                            ${i + 1}L 
+                                            ${a.data.idPedido} 
                                         </td>
                                         <td> 
-                                            ${
-                                                a.data.producto.map(b => {
-                                                    return`
+                                            ${a.data.producto.map((b) => {
+                                              return `
                                                         <span>
                                                             ${b.producto}-${b.cantidad}
                                                         </span>
                                                     `;
-                                                })
-                                            } 
+                                            })} 
                                         </td>
                                         <td> 
                                             ${
-                                                a.data.producto.length > 1 ? a.data.producto.reduce((c,d) => parseInt(c.cantidad) + parseInt(d.cantidad)) : a.data.producto[0].cantidad
+                                              a.data.producto.length > 1
+                                                ? a.data.producto.reduce(
+                                                    (c, d) =>
+                                                      parseInt(c.cantidad) +
+                                                      parseInt(d.cantidad)
+                                                  )
+                                                : a.data.producto[0].cantidad
                                             } 
                                         </td>
                                         <td> 
-                                            ${
-                                                a.data.total
-                                            } 
+                                            ${a.data.total} 
                                         </td>
                                     </tr>
                                 `;
-                            })
-                        }
+                        })}
                     </tbody>
                 </table>
             </div>
             <div>
                 <div style="display: inline-block;">
                     <p>
-                        <u>___________${data.nombreAlmacen}______________</u><br>
+                        <u>___________${
+                          data.nombreAlmacen
+                        }______________</u><br>
                         ENTREGO MERCANCIA
                     </p>
                 </div>
@@ -132,8 +133,14 @@ module.exports = (data) => {
                 <h1>PAGARÉ</h1>
                 <p>
                     debo y pagare incodicionalmente por este pagare a la oden de ALEJANDRO ALVARADO GOMEZ a quien ha de pagarse, en el domicilio
-                    HIDALGO 365 COLONIA SAN PEDRO TLAQUEPAQUE JALISCO, EL DIA <u>____________${moment().add(1, 'day').format('L')}__________</u>, LA CANTIDAD DE
-                    <u>__________${data.total}_________</u> (SON:<u>________<span>***${data.textoTotal} 00/100***</span>_____</u>), VALOR
+                    HIDALGO 365 COLONIA SAN PEDRO TLAQUEPAQUE JALISCO, EL DIA <u>____________${moment()
+                      .add(1, "day")
+                      .format("L")}__________</u>, LA CANTIDAD DE
+                    <u>__________${
+                      data.total
+                    }_________</u> (SON:<u>________<span>***${
+    data.textoTotal
+  } 00/100***</span>_____</u>), VALOR
                     RECIBIDO A MI ENTERA SATISFACCION.
                     Este pagare es mercantil y esta regido por la Ley General de Titulos y Operaciones de Crédito en su articulo 173 parte final
                     y demas articulos correlativos por no ser pagare domiciliado
@@ -142,7 +149,9 @@ module.exports = (data) => {
                 </p>
                 <div style="display: inline-block;">
                     <p>
-                        TLAQUEPAQUE JALISCO A:<u>_________${moment().format('L')}___________</u>.<br>
+                        TLAQUEPAQUE JALISCO A:<u>_________${moment().format(
+                          "L"
+                        )}___________</u>.<br>
                         ISLAS BALTICAS 4425 1-22<br>
                         COL. SAUZ, GUADALAJARA, JALISCO<br>
                         C.P. TEL: 33670425<br>
@@ -160,4 +169,4 @@ module.exports = (data) => {
     </html>
 
     `;
-}
+};
