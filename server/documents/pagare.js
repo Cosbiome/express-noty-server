@@ -61,7 +61,7 @@ module.exports = (data) => {
                 <img width="126px" height="46px" src="https://firebasestorage.googleapis.com/v0/b/cosbiome-bcdf4.appspot.com/o/logo-nuevo-solan-natura-editado.jpg?alt=media&token=47de15a4-7def-4c7c-a113-6df37a4bc4bc" alt="dasds"/>
             </div>
             <div  style="display: inline-block; margin-left: 10%;">
-                <h2>Folio Ruta 01570G</h2>
+                <h2>Folio Ruta ${data.idRuta}</h2>
                 Tipo de Movimiento: Venta
                 Fecha Movimiento: ${moment().format("L")}
                 Hora Movimiento: ${moment().format("LTS")}
