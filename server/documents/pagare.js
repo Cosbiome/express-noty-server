@@ -133,7 +133,7 @@ module.exports = (data) => {
                 <h1>PAGARÉ</h1>
                 <p>
                     debo y pagare incodicionalmente por este pagare a la oden de ALEJANDRO ALVARADO GOMEZ a quien ha de pagarse, en el domicilio
-                    HIDALGO 365 COLONIA SAN PEDRO TLAQUEPAQUE JALISCO, EL DIA <u>____________${moment()
+                    Av conchita 2874 col loma bonita Zapopan, Jalisco, EL DIA <u>____________${moment()
                       .add(1, "day")
                       .format("L")}__________</u>, LA CANTIDAD DE
                     <u>__________${
