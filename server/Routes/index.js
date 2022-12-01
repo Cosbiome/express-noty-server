@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const webpush = require("../webpush.js");
+//const webpush = require("../webpush.js");
 const pdf = require("html-pdf");
 
 const psfTemplate = require("../documents/pagare.js");
@@ -32,7 +32,7 @@ router.post("/loginReg", async (req, res) => {
   });
 
   try {
-    await webpush.sendNotification(pushSubscription, payload);
+   // await webpush.sendNotification(pushSubscription, payload);
   } catch (error) {
     console.log(error);
   }
@@ -45,7 +45,7 @@ router.post("/almacenNoti", async (req, res) => {
   });
 
   try {
-    await webpush.sendNotification(pushSubscription, payload);
+   // await webpush.sendNotification(pushSubscription, payload);
     res.status(200).json();
   } catch (error) {
     console.log(error);
